@@ -7,12 +7,12 @@ import org.springframework.security.core.userdetails.UserDetails;
 
 import com.example.moattravel.entity.User;
 
-public class UserDetailslmpl implements UserDetails{
+public class UserDetailsImpl implements UserDetails{
 	private final User user;
 	
 	private final Collection<GrantedAuthority> authorities;
 	
-	public UserDetailslmpl (User user, Collection<GrantedAuthority> authorities) {
+	public UserDetailsImpl (User user, Collection<GrantedAuthority> authorities) {
 		this.user = user;
 		this.authorities = authorities;
 	}

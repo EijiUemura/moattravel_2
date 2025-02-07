@@ -15,7 +15,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.example.moattravel.entity.User;
 import com.example.moattravel.form.UserEditForm;
 import com.example.moattravel.repository.UserRepository;
-import com.example.moattravel.security.UserDetailslmpl;
+import com.example.moattravel.security.UserDetailsImpl;
 import com.example.moattravel.service.UserService;
 
 @Controller
@@ -32,7 +32,7 @@ public class UserController {
 	}
 	
 	@GetMapping
-	public String index (@AuthenticationPrincipal UserDetailslmpl userDetailslmpl, Model model) {
+	public String index (@AuthenticationPrincipal UserDetailsImpl userDetailslmpl, Model model) {
 		User user =userRepository.getReferenceById(userDetailslmpl.getUser().getId());
 		
 		model.addAttribute("user",user);
@@ -41,7 +41,7 @@ public class UserController {
 	}
 	
 	@GetMapping("/edit")
-	public String edit(@AuthenticationPrincipal UserDetailslmpl userDetailslmpl,Model model) {
+	public String edit(@AuthenticationPrincipal UserDetailsImpl userDetailslmpl,Model model) {
 		User user = userRepository.getReferenceById(userDetailslmpl.getUser().getId());
 		
 		UserEditForm userEditForm = new UserEditForm(user.getId(), user.getName(), user.getFurigana(), user.getPostalCode(), user.getAddress(), user.getPhoneNumber(), user.getEmail());

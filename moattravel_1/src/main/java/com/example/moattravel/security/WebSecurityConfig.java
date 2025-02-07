@@ -18,7 +18,7 @@ public class WebSecurityConfig {
 	@Bean
 	public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
 		http.authorizeHttpRequests((requests) -> requests
-				.requestMatchers("/css/**","/images/**","/js/**","/storage/**","/","/signup/**","/houses/{id}").permitAll()
+				.requestMatchers("/css/**","/images/**","/js/**","/storage/**","/","/signup/**","/houses/{id}","/stripe/webhook").permitAll()
 				//                            ユーザー指定
 				.requestMatchers("/admin/**").hasRole("ADMIN")
 				.anyRequest().authenticated())
@@ -35,7 +35,8 @@ public class WebSecurityConfig {
 		
 		.logout((logout) -> logout
 				//ログアウト時　　　　　　　　　すべてのユーザー
-				.logoutSuccessUrl("/?loggedOut").permitAll());
+				.logoutSuccessUrl("/?loggedOut").permitAll())
+		.csrf((csrf) -> csrf.ignoringRequestMatchers("/stripe/webhook"));  // CSRFを無効化;
 		
 		return http.build();
 		

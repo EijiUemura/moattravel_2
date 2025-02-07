@@ -32,7 +32,7 @@ public class UserDetailsServicelmpl implements UserDetailsService {
 
 			Collection<GrantedAuthority> authorities = new ArrayList<>();
 			authorities.add(new SimpleGrantedAuthority(userRoleName));
-			return new UserDetailslmpl(user, authorities);
+			return new UserDetailsImpl(user, authorities);
 
 		} catch (Exception e) {
 			throw new UsernameNotFoundException("ユーザーが見つかりませんでした。");
